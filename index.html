@@ -7,7 +7,7 @@
         <title>Document</title>
         <style>
             html,body,div,p,span{margin: 0;padding: 0;}
-            .name{font-size: 30px;background:url(./img/tamia.jpg) no-repeat;min-height:220px;background-size:100% auto;color: #333;text-align: center;}
+            .name{line-height:80px;font-size: 30px;background:url(./img/tamia.jpg) no-repeat;min-height:220px;background-size:100% auto;color: #333;text-align: center;}
             .dong{color: aqua;display: inline-block;transform: rotate(0);animation: dong 2s infinite;}
             .jing{color: burlywood;display: inline-block;animation: jing 2s infinite;}
             .da{color: blueviolet;display: inline-block;transform: rotate(0);animation: da 2.5s infinite;}
@@ -38,15 +38,55 @@
             from {transform:rotate(0);}
             to {transform:rotate(80deg);}
             }
+            .say{text-align: center;}
+            .say span{font-size: 20px;color:#333333;}
         </style>
     </head>
     <body>
         <div class="name">
             <span class="dong">东</span>
             <span class="jing">东</span>
-            <span class="da">小</span>
-            <span class="sha">屁</span>
-            <span class="zi">孩</span>
+            <span class="da">大</span>
+            <span class="sha">傻</span>
+            <!-- <span class="zi">孩</span> -->
         </div>
+        <div id="say" class="say">
+
+
+        </div>
+        <script>
+            var say_wrap = document.getElementById('say');
+            var say_con = '豆豆和阿姨：说得太好了~~'.split(''),eles = [];
+            
+            function write(){
+                for(let i = 0 , l = say_con.length; i < l;i++){
+                
+                    (function(i){
+                        var idx = i;
+                        (function(idx){
+                            var a = idx;
+                            setTimeout(function(){
+                                say_wrap.innerHTML += ('<span style="color:'+ random_color()+';">' + say_con[a] + '</span>');
+                            },220*a)
+                        }(idx))
+                    }(i))
+                }
+            }
+            
+            function random_color() {
+                var r = parseInt(Math.random()*255) , g = parseInt(Math.random()*255) , b = parseInt(Math.random()*255);
+                return 'rgb('+ r + ',' + g + ',' + b + ')';
+            }
+            write()
+            setInterval(function () {
+                say_wrap.innerHTML = '';
+                write()
+              },(say_con.length*220 + 500))
+
+            function getbyIndex(idx,arr){
+                return arr[idx];
+            }
+        </script>
+
     </body>
     </html>
